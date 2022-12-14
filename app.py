@@ -6,11 +6,16 @@ counter = Value('i', 0)
 
 stacks = [
     "NA",
-    "https://s38pilot3.grafana.net/",
-    "https://s38pilot4.grafana.net/",
-    "https://s38pilot5.grafana.net/",
-    "https://s38pilot6.grafana.net/",
-    "https://s38pilot7.grafana.net/"
+    "https://s38p1.grafana.net/",
+    "https://s38p2.grafana.net/",
+    "https://s38p3.grafana.net/",
+    "https://s38p4.grafana.net/",
+    "https://s38p5.grafana.net/",
+    "https://s38p6.grafana.net/",
+    "https://s38p7.grafana.net/",
+    "https://s38p8.grafana.net/",
+    "https://s38p9.grafana.net/",
+    "https://s38p10.grafana.net/"
 ]
 
 app = Flask(__name__)

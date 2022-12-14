@@ -3,14 +3,14 @@ from flask import Flask,redirect
 from multiprocessing import Value
 
 counter = Value('i', 0)
-## a = "http://www.grafana.com"
-## a = 1
-## a = a+1
 
 stacks = [
     "NA",
-    "http://www.grafana.com",
-    "http://www.google.com"
+    "https://s38pilot3.grafana.net/",
+    "https://s38pilot4.grafana.net/",
+    "https://s38pilot5.grafana.net/",
+    "https://s38pilot6.grafana.net/",
+    "https://s38pilot7.grafana.net/"
 ]
 
 app = Flask(__name__)
@@ -20,8 +20,8 @@ def hello():
     with counter.get_lock():
             counter.value += 1
             out = counter.value
-    return f'{stacks[out]}'
-##    return redirect(a, code=302)
+##    return f'{stacks[out]}'
+    return redirect(stacks[out], code=302)
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.

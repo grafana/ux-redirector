@@ -1,11 +1,11 @@
 import os
 from flask import Flask,redirect
 from multiprocessing import Value
+import random
 
-counter = Value('i', 0)
+# counter = Value('i', 0)
 
 stacks = [
-    "NA",
     "https://s38p1.grafana.net/",
     "https://s38p2.grafana.net/",
     "https://s38p3.grafana.net/",
@@ -22,10 +22,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    with counter.get_lock():
-            counter.value += 1
-            out = counter.value
-##    return f'{stacks[out]}'
+    out = random.randrange(9)
+# with counter.get_lock():
+#         counter.value += 1
+#         out = counter.value
+#   return f'{stacks[out]}'
     return redirect(stacks[out], code=302)
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@ from flask import Flask,redirect
 from multiprocessing import Value
 import random
 
-# counter = Value('i', 0)
+counter = Value('i', 0)
 
 stacks = [
     "https://s38p1.grafana.net/",
@@ -22,12 +22,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    out = random.randrange(9)
-# with counter.get_lock():
-#         counter.value += 1
-#         out = counter.value
-#   return f'{stacks[out]}'
-    return redirect(stacks[out], code=302)
+    # out = random.randrange(9)
+    # return redirect(stacks[out], code=302)
+    with counter.get_lock():
+            out = counter.value
+            counter.value += 1
+    # return f'{stacks[out]}'
+    return redirect(stacks[out], code=302) 
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.

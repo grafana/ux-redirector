@@ -17,7 +17,7 @@ def hello():
     # out = random.randrange(9)
     # return redirect(stacks[out], code=302)
     with counter.get_lock():
-            url = 'https://' + stacks[counter.value] + '.grafana.net'
+            url = f'https://{stacks[counter.value]}.grafana.net'
             out = counter.value
             counter.value += 1
     return redirect(url, code=302) 

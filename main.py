@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    # out = random.randrange(9)
+    # out = random.randrange(len(stacks))
     # return redirect(stacks[out], code=302)
     with counter.get_lock():
             url = f'https://{stacks[counter.value]}.grafana.net'

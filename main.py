@@ -2,8 +2,13 @@ import os
 from flask import Flask,redirect
 from multiprocessing import Value
 import random
+try:
+    from configparser import ConfigParser
+except ImportError:
+    from ConfigParser import ConfigParser  # ver. < 3.0
 
-counter = Value('i', 0)
+config = ConfigParser()
+config.read('config.ini')
 
 file = open("test-stacks.txt", "r")
 
@@ -16,10 +21,12 @@ app = Flask(__name__)
 def hello():
     # out = random.randrange(9)
     # return redirect(stacks[out], code=302)
-    with counter.get_lock():
-            url = f'https://{stacks[counter.value]}.grafana.net'
-            out = counter.value
-            counter.value += 1
+    counter = config.getint('counters', 'counter1')
+    url = f'https://{stacks[counter]}.grafana.net'
+    counter += 1
+    config.set('counters', 'counter1', str(counter))
+    with open('config.ini', 'w') as configfile:
+        config.write(configfile)
     return redirect(url, code=302) 
 
 if __name__ == '__main__':
